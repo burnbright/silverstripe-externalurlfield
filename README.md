@@ -92,7 +92,7 @@ $websitefield->setConfig('removeparts',array(
 
 ### HTML5 validation
 
-Enabled by default, the html5 validation sets the field type atribute to `url, and adds a pattern attribute whic is set to `https?://.+`.
+Enabled by default, the html5 validation sets the field type atribute to `url`, and adds a pattern attribute which is set to `https?://.+`.
 
 Disable using the `html5validation` config:
 ```php
