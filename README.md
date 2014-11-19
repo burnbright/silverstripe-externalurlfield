@@ -12,7 +12,7 @@ composer require burnbright/silverstripe-externalurlfield "*@stable"
 
 ## Requirements
 
-Makes use of the `http_build_url` from the [PECL pecl_http library](http://php.net/manual/en/ref.http.php). However, it also requires a [PHP fallback/shim/polyfill](https://github.com/jakeasmith/http_build_url) via composer. The composer replacement will check for the existance of `http_build_url`.
+Makes use of the `http_build_url` function from the [PECL pecl_http library](http://php.net/manual/en/ref.http.php). However the module's composer requirements include a [PHP fallback/shim/polyfill](https://github.com/jakeasmith/http_build_url). The composer replacement does check for the presence of `http_build_url`.
 
 ## DataObject / Template Usage
 
