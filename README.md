@@ -4,9 +4,15 @@ Provides a `DBField` and `FormField` for handling external URLs.
 
 Validate and tidy urls as they are captured from users. Configuration is highly flexible. Makes use of php's `parse_url` to do the actual work.
 
+## Installation
+
+```sh
+composer require burnbright/silverstripe-externalurlfield *@stable
+```
+
 ## Requirements
 
-Makes use of the `http_build_url` from the [PECL pecl_http library](http://php.net/manual/en/ref.http.php). However, it also requires a [PHP fallback replacement](https://github.com/jakeasmith/http_build_url) via composer. The composer replacement will check for the existance of `http_build_url`.
+Makes use of the `http_build_url` from the [PECL pecl_http library](http://php.net/manual/en/ref.http.php). However, it also requires a [PHP fallback/shim/polyfill](https://github.com/jakeasmith/http_build_url) via composer. The composer replacement will check for the existance of `http_build_url`.
 
 ## DataObject / Template Usage
 
