@@ -2,10 +2,15 @@
 
 Provides a `DBField` and `FormField` for handling external URLs.
 
-Validate and tidy urls as they are captured. High flexibility. Makes use of php's `parse_url` to do the actual work.
+Validate and tidy urls as they are captured from users. Configuration is highly flexible. Makes use of php's `parse_url` to do the actual work.
+
+## Requirements
+
+Makes use of the `http_build_url` from the [PECL pecl_http library](http://php.net/manual/en/ref.http.php). However, it also requires a [PHP fallback replacement](https://github.com/jakeasmith/http_build_url) via composer. The composer replacement will check for the existance of `http_build_url`.
 
 ## DataObject / Template Usage
-Handled by `ExternalURL` class (DBField)
+
+Handled by `ExternalURL` class (Varchar).
 
 ```php
 class MyDataObject extends DataObject {
@@ -33,7 +38,10 @@ Website Domain: www.hostname.com
 ```
 
 ## Form Usage
-Handled by `ExternalURLField` (FormField)
+
+Handled by `ExternalURLField` (FormField).
+
+The produced field uses the html5 `type="url"` attribute.
 
 You can configure various parts of the url to be required or stripped out, or untouched.
 
@@ -48,14 +56,17 @@ $websitefield = new ExternalURLField('Website');
 
 //set options (with defaults shown)
 $websitefield->setConfig(array(
-    'protocol' => true,
-    'username' => false,
-    'password' => false,
-    'subdomain' => null,
-    'hostname' => true,
-    'port' => null,
-    'path' => null,
-    'query' => null,
-    'fragment' => null
+    'requirements' => array(
+        'protocol' => true,
+        'username' => false,
+        'password' => false,
+        'subdomain' => null,
+        'hostname' => true,
+        'port' => null,
+        'path' => null,
+        'query' => null,
+        'fragment' => null
+    ),
+    'html5' => true
 ));
 ```
