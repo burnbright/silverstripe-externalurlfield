@@ -10,16 +10,19 @@ class ExternalURLField extends TextField{
 	 * @var array
 	 */
 	private static $default_config = array(
-	    'requirements' => array(
-	        'scheme' => true,
-	        'user' => false,
-	        'pass' => false,
-	        'host' => true,
-	        'port' => null,
-	        'path' => null,
-	        'query' => null,
-	        'fragment' => null
-	    )
+		'defaultparts' => array(
+			'scheme' => 'http'
+		),
+		'removeparts' => array(
+			'scheme' => false,
+			'user' => true,
+			'pass' => true,
+			'host' => false,
+			'port' => false,
+			'path' => false,
+			'query' => false,
+			'fragment' => false
+		)
 	);
 	
 	/**
@@ -60,24 +63,31 @@ class ExternalURLField extends TextField{
 	 */
 	public function setValue($url) {
 		if($url){
-			$url = $this->stripParts($url);
+			$url = $this->rebuildURL($url);
 		}
 		parent::setValue($url);
 	}
 
 	/**
+	 * Add config scheme, if missing.
 	 * Remove the parts of the url we don't want.
-	 * Rebuild url to clean it up.
+	 * Enforce any defaults
+	 * Remove any trailing slash.
+	 * @return string
 	 */
-	protected function stripParts($url) {
+	protected function rebuildURL($url) {
+		if(!preg_match('#^[a-zA-Z]+://#', $url)){
+			$url = $this->config['defaultparts']['scheme']."://".$url;
+		}
 		$parts = parse_url($url);
 		foreach($parts as $part => $value) {
-			if($this->config['requirements'][$part] === false){
+			if($this->config['removeparts'][$part] === true){
 				unset($parts[$part]);
 			}
 		}
+		$defaults = $this->config['defaultparts'];
 
-		return http_build_url($parts);
+		return rtrim(http_build_url($defaults, $parts), "/");
 	}
 
 	/**

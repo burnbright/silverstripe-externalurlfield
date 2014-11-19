@@ -10,11 +10,14 @@ class ExternalURLFieldTest extends SapphireTest{
 		);
 		$this->assertEquals('http://www.hostname.com:81/path?arg=value#anchor', $field->dataValue());
 
-		$field->setValue("http://hostname.com/path");
-		$this->assertEquals('http://hostname.com/path', $field->dataValue());
+		$field->setValue("https://hostname.com/path");
+		$this->assertEquals('https://hostname.com/path', $field->dataValue());
 
 		$field->setValue("");
 		$this->assertEquals("", $field->dataValue());
+
+		$field->setValue("www.hostname.com");
+		$this->assertEquals('http://www.hostname.com', $field->dataValue());
 	}
 
 	public function testValidation() {

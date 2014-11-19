@@ -65,16 +65,20 @@ $websitefield = new ExternalURLField('Website');
 
 //set options (with defaults shown)
 $websitefield->setConfig(array(
-    'requirements' => array(
-        'protocol' => true,
-        'username' => false,
-        'password' => false,
-        'subdomain' => null,
-        'hostname' => true,
-        'port' => null,
-        'path' => null,
-        'query' => null,
-        'fragment' => null
+    //these are always required / set
+    'defaults' => array(
+        'scheme' => 'http'
+    ),
+    //these parts are removed from saved urls
+    'removeparts' => array(
+        'scheme' => false,
+        'user' => true,
+        'pass' => true,
+        'host' => false,
+        'port' => false,
+        'path' => false,
+        'query' => false,
+        'fragment' => false
     )
 ));
 ```
