@@ -66,7 +66,6 @@ $websitefield->setConfig(array(
         'path' => null,
         'query' => null,
         'fragment' => null
-    ),
-    'html5' => true
+    )
 ));
 ```

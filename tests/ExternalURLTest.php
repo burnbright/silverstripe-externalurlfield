@@ -7,20 +7,29 @@ class ExternalURLTest extends SapphireTest{
 		$f->setValue("http://username:password@www.hostname.com:81/path?arg=value#anchor");
 		$this->assertEquals(
 			"http://username:password@www.hostname.com:81/path?arg=value#anchor",
-			(string)$f)
-		;
+			(string)$f
+		);
+		$this->assertEquals(2083, $f->getSize());
+
 	}
 
-	public function testNiceFormatting() {
+	public function testNice() {
 		$f = new ExternalURL("MyField");
 		$f->setValue("http://username:password@www.hostname.com:81/path?arg=value#anchor");
 		$this->assertEquals("www.hostname.com/path", $f->Nice());
 	}
 
+	public function testDomain() {
+		$f = new ExternalURL("MyField");
+		$f->setValue("http://username:password@www.hostname.com:81/path?arg=value#anchor");
+		$this->assertEquals("www.hostname.com", $f->Domain());
+	}
+
 	public function testScaffolding() {
 		$f = new ExternalURL("MyField");
 		$field = $f->scaffoldFormField();
-		$this->assertInstanceOf("ExternaURLField", $field);
+		$this->assertInstanceOf("ExternalURLField", $field);
+		$this->assertEquals(2083, $field->getMaxLength());
 	}
 
 }

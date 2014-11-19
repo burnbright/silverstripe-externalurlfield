@@ -2,33 +2,49 @@
 
 class ExternalURL extends Varchar{
 
+	private static $casting = array(
+		"Domain" => "Text"
+	);
+
 	/**
 	 * 2083 is the lowest common denominator when it comes to url lengths.
 	 */
 	public function __construct($name = null, $size = 2083, $options = array()) {
-		$this->size = $size ? $size : 2083;
-		parent::__construct($name, $options);
+		parent::__construct($name, $size, $options);
 	}
 	
 	/**
 	 * Remove ugly parts of a url to make it nice
 	 */
 	public function Nice() {
-		$parts = parse_url($url);
-        unset($parts['scheme']);
-        unset($parts['user']);
-        unset($parts['pass']);
-        unset($parts['port']);
-        unset($parts['query']);
-        unset($parts['fragment']);
+		$parts = parse_url($this->value);
+		$remove = array('scheme','user','pass','port','query','fragment');
+        foreach($remove as $part){
+        	unset($parts[$part]);
+        }
 
 		return http_build_url($parts);
 	}
 
+	/**
+	 * Get just the domain of the url.
+	 */
+	public function Domain() {
+		return parse_url($this->value, PHP_URL_HOST);
+	}
+
+	/**
+	 * Scaffold the ExternalURLField for this ExternalURL
+	 */
 	public function scaffoldFormField($title = null, $params = null) {
 		$field = new ExternalURLField($this->name, $title);
-		
+		$field->setMaxLength($this->getSize());
+
 		return $field;
+	}
+
+	public function forTemplate() {
+		return $this->URL();
 	}
 
 }
