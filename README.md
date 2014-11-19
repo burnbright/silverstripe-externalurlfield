@@ -52,11 +52,7 @@ Handled by `ExternalURLField` (FormField).
 Validation is handled by the html5 pattern attribute, and also server side by [a more robust regular expression](https://gist.github.com/dperini/729294).
 The field uses the html5 `type="url"` attribute.
 
-You can configure various parts of the url to be required or stripped out, or untouched upon saving.
-
- * **true**: enforce requirement
- * **false**: strip out
- * **null**: no action if present or not
+You can configure various parts of the url to be stripped out, or populated with defaults when missing.
 
 ```php
 
@@ -65,8 +61,8 @@ $websitefield = new ExternalURLField('Website');
 
 //set options (with defaults shown)
 $websitefield->setConfig(array(
-    //these are always required / set
-    'defaults' => array(
+    //these will be added, if missing
+    'defaultparts' => array(
         'scheme' => 'http'
     ),
     //these parts are removed from saved urls
@@ -79,6 +75,28 @@ $websitefield->setConfig(array(
         'path' => false,
         'query' => false,
         'fragment' => false
-    )
+    ),
+    'html5validation' => true
 ));
+
+//say you want to store nice tidy facebook urls
+$websitefield->setConfig('removeparts',array(
+    'query' => true,
+    'fragment' => 'true',
+    'port' => 'true'
+));
+//a urls like https://www.facebook.com/joe.bloggs?fref=nf&pnref=story
+//would become https://www.facebook.com/joe.bloggs
+
 ```
+
+### HTML5 validation
+
+Enabled by default, the html5 validation sets the field type atribute to `url, and adds a pattern attribute whic is set to `https?://.+`.
+
+Disable using the `html5validation` config:
+```php
+$field->setConfig("html5validation", false);
+```
+
+Disabling html5 validation is particularly useful if you want to allow users to enter urls that have no scheme/protocol e.g: `mywebsite.com` instead of `http://www.mywebsite.com`.

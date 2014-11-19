@@ -22,7 +22,8 @@ class ExternalURLField extends TextField{
 			'path' => false,
 			'query' => false,
 			'fragment' => false
-		)
+		),
+		'html5validation' => true
 	);
 	
 	/**
@@ -46,14 +47,60 @@ class ExternalURLField extends TextField{
 		return 'url text';
 	}
 
+	/**
+	 * @param string $name
+	 * @param mixed $val
+	 */
+	public function setConfig($name, $val = null) {
+		if(is_array($name) && $val == null){
+			foreach($name as $n => $value){
+				$this->setConfig($n, $value);
+			}
+
+			return $this;
+		}
+		if(is_array($this->config[$name])){
+			if(!is_array($val)){
+				user_error("The value for $name must be an array");
+			}
+			$this->config[$name] = array_merge($this->config[$name], $val);
+		}elseif(isset($this->config[$name])){
+			$this->config[$name] = $val;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * @param String $name Optional, returns the whole configuration array if empty
+	 * @return mixed|array
+	 */
+	public function getConfig($name = null) {
+		if($name) {
+			return isset($this->config[$name]) ? $this->config[$name] : null;
+		} else {
+			return $this->config;
+		}
+	}
+
+	/**
+	 * Set additional attributes
+	 * @return array Attributes
+	 */
 	public function getAttributes() {
-		return array_merge(
-			parent::getAttributes(),
-			array(
+		$attributes = array(
+			'placeholder' => $this->config['defaultparts']['scheme']."://example.com" //example url
+		);
+		if($this->config['html5validation']){
+			$attributes += array(
 				'type' => 'url', //html5 field type
 				'pattern' => 'https?://.+', //valid urls only
-				"placeholder" => "http://example.com" //example url
-			)
+			);
+		}
+
+		return array_merge(
+			parent::getAttributes(),
+			$attributes
 		);
 	}
 
@@ -71,21 +118,31 @@ class ExternalURLField extends TextField{
 	/**
 	 * Add config scheme, if missing.
 	 * Remove the parts of the url we don't want.
-	 * Enforce any defaults
-	 * Remove any trailing slash.
+	 * Set any defaults, if missing.
+	 * Remove any trailing slash, and rebuild.
 	 * @return string
 	 */
 	protected function rebuildURL($url) {
+		$defaults = $this->config['defaultparts'];
 		if(!preg_match('#^[a-zA-Z]+://#', $url)){
-			$url = $this->config['defaultparts']['scheme']."://".$url;
+			$url = $defaults['scheme']."://".$url;
 		}
 		$parts = parse_url($url);
+		if(!$parts){
+			//can't parse url, abort
+			return "";
+		}
 		foreach($parts as $part => $value) {
 			if($this->config['removeparts'][$part] === true){
 				unset($parts[$part]);
 			}
 		}
-		$defaults = $this->config['defaultparts'];
+		//set defaults, if missing
+		foreach($defaults as $part => $default){
+			if(!isset($parts[$part])){
+				$parts[$part] = $default;
+			}
+		}
 
 		return rtrim(http_build_url($defaults, $parts), "/");
 	}
