@@ -3,7 +3,8 @@
 class ExternalURL extends Varchar{
 
 	private static $casting = array(
-		"Domain" => "Text"
+		"Domain" => "ExternalURL",
+		"URL" => "ExternalURL"
 	);
 
 	/**
@@ -17,20 +18,30 @@ class ExternalURL extends Varchar{
 	 * Remove ugly parts of a url to make it nice
 	 */
 	public function Nice() {
-		$parts = parse_url($this->value);
-		$remove = array('scheme','user','pass','port','query','fragment');
-        foreach($remove as $part){
-        	unset($parts[$part]);
-        }
+		if($this->value && $parts = parse_url($this->URL())){
+			$remove = array('scheme','user','pass','port','query','fragment');
+	        foreach($remove as $part){
+	        	unset($parts[$part]);
+	        }
 
-		return http_build_url($parts);
+			return rtrim(http_build_url($parts), "/");
+		}
 	}
 
 	/**
 	 * Get just the domain of the url.
 	 */
 	public function Domain() {
-		return parse_url($this->value, PHP_URL_HOST);
+		if($this->value){
+			return parse_url($this->URL(), PHP_URL_HOST);
+		}
+	}
+
+	/**
+	 * Remove the www subdomain, if present.
+	 */
+	public function NoWWW() {
+		return ltrim($this->value, "www.");
 	}
 
 	/**
@@ -44,7 +55,9 @@ class ExternalURL extends Varchar{
 	}
 
 	public function forTemplate() {
-		return $this->URL();
+		if($this->value){
+			return $this->URL();
+		}
 	}
 
 }

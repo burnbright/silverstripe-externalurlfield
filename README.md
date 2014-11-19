@@ -33,6 +33,7 @@ class MyDataObject extends DataObject {
     <p>Website: $Website</p>
     <p>Website Nice: $Website.Nice</p>
     <p>Website Domain: $Website.Domain</p>
+    <p>Website Domain No WWW: $Website.Domain.NoWWW</p>
 <% end_with %>
 ```
 
@@ -41,15 +42,17 @@ Given the url `http://username:password@www.hostname.com:81/path?arg=value#ancho
 Website: http://username:password@www.hostname.com:81/path?arg=value#anchor
 Website Nice: www.hostname.com/path
 Website Domain: www.hostname.com
+Website Domain No WWW: hostname.com
 ```
 
 ## Form Usage
 
 Handled by `ExternalURLField` (FormField).
 
-The produced field uses the html5 `type="url"` attribute.
+Validation is handled by the html5 pattern attribute, and also server side by [a more robust regular expression](https://gist.github.com/dperini/729294).
+The field uses the html5 `type="url"` attribute.
 
-You can configure various parts of the url to be required or stripped out, or untouched.
+You can configure various parts of the url to be required or stripped out, or untouched upon saving.
 
  * **true**: enforce requirement
  * **false**: strip out
