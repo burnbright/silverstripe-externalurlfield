@@ -7,7 +7,7 @@ Validate and tidy urls as they are captured from users. Configuration is highly 
 ## Installation
 
 ```sh
-composer require burnbright/silverstripe-externalurlfield *@stable
+composer require burnbright/silverstripe-externalurlfield "*@stable"
 ```
 
 ## Requirements
