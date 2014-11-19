@@ -1,12 +1,17 @@
 <?php
 
 /**
- * Form field for entering external urls
+ * ExternalURLField
+ * 
+ * Form field for entering, saving, validating external urls.
  */
 class ExternalURLField extends TextField{
 
 	/**
-	 * @config
+	 * Default configuration
+	 *
+	 * URL validation regular expression was sourced from
+	 * @see https://gist.github.com/dperini/729294
 	 * @var array
 	 */
 	private static $default_config = array(
@@ -23,14 +28,9 @@ class ExternalURLField extends TextField{
 			'query' => false,
 			'fragment' => false
 		),
-		'html5validation' => true
+		'html5validation' => true,
+		'validregex' => '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))(?::\d+)?(?:[^\s]*)?$%iu'
 	);
-	
-	/**
-	 * URL validation regular expression
-	 * @see https://gist.github.com/dperini/729294
-	 */
-	private static $valid_url_regex = '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))(?::\d+)?(?:[^\s]*)?$%iu';
 	
 	/**
 	 * @var array
@@ -152,7 +152,7 @@ class ExternalURLField extends TextField{
 	 */
 	public function validate($validator) {
 		$this->value = trim($this->value);
-		$regex = self::config()->valid_url_regex;
+		$regex = $this->config['validregex'];
 		if($this->value && $regex && !preg_match($regex, $this->value)){
 			$validator->validationError(
 				$this->name,
