@@ -3,7 +3,7 @@
 	"description": "Provides SilverStripe with a DBField and FormField for handling external URLs.",
 	"type": "silverstripe-module",
 	"license": "MIT",
-	"keywords": ["silverstripe", "url", "link"],
+	"keywords": ["silverstripe", "url", "link", "form", "field"],
 	"require": {
 		"silverstripe/framework": "~3.1",
 		"jakeasmith/http_build_url": "*@stable"
