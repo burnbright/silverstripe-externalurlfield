@@ -5,7 +5,7 @@
  * 
  * Form field for entering, saving, validating external urls.
  */
-class ExternalURLField extends TextField{
+class ExternalURLField extends TextField {
 
 	/**
 	 * Default configuration
