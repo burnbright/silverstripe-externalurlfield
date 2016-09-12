@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"keywords": ["silverstripe", "url", "link", "form", "field"],
 	"require": {
-		"silverstripe/framework": "~3.1",
+		"silverstripe/framework": "~3",
 		"jakeasmith/http_build_url": "*@stable"
 	},
 	"extra": {
