@@ -6,7 +6,7 @@
 	"keywords": ["silverstripe", "url", "link", "form", "field"],
 	"require": {
 		"silverstripe/framework": "^3",
-		"jakeasmith/http_build_url": "*@stable"
+		"jakeasmith/http_build_url": "^1"
 	},
 	"extra": {
 		"installer-name": "externalurlfield"
