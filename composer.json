@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"keywords": ["silverstripe", "url", "link", "form", "field"],
 	"require": {
-		"silverstripe/framework": "^3",
+		"silverstripe/framework": "^4.0@dev",
 		"jakeasmith/http_build_url": "^1"
 	},
 	"extra": {
@@ -17,5 +17,11 @@
 			"homepage": "https://github.com/jedateach",
 			"role": "Developer"
 		}
-	]
+	],
+    "autoload": {
+        "psr-4": {
+            "BurnBright\\ExternalURLField\\": "src/",
+            "BurnBright\\ExternalURLField\\Tests\\": "tests/"
+        }
+    }
 }

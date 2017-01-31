@@ -1,8 +1,13 @@
 <?php
 
+namespace BurnBright\ExternalURLField\Tests;
+
+use BurnBright\ExternalURLField\ExternalURL;
+use BurnBright\ExternalURLField\ExternalURLField;
+use SilverStripe\Dev\SapphireTest;
+
 class ExternalURLTest extends SapphireTest
 {
-    
     public function testDefault()
     {
         $f = new ExternalURL("MyField");
@@ -32,7 +37,7 @@ class ExternalURLTest extends SapphireTest
     {
         $f = new ExternalURL("MyField");
         $field = $f->scaffoldFormField();
-        $this->assertInstanceOf("ExternalURLField", $field);
+        $this->assertInstanceOf(ExternalURLField::class, $field);
         $this->assertEquals(2083, $field->getMaxLength());
     }
 }

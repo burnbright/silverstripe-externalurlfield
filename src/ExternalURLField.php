@@ -1,13 +1,16 @@
 <?php
 
+namespace BurnBright\ExternalURLField;
+
+use SilverStripe\Forms\TextField;
+
 /**
  * ExternalURLField
- * 
+ *
  * Form field for entering, saving, validating external urls.
  */
 class ExternalURLField extends TextField
 {
-
     /**
      * Default configuration
      *
@@ -32,7 +35,7 @@ class ExternalURLField extends TextField
         'html5validation' => true,
         'validregex' => '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))(?::\d+)?(?:[^\s]*)?$%iu'
     );
-    
+
     /**
      * @var array
      */
@@ -44,7 +47,7 @@ class ExternalURLField extends TextField
 
         parent::__construct($name, $title, $value);
     }
-    
+
     public function Type()
     {
         return 'url text';
@@ -95,7 +98,7 @@ class ExternalURLField extends TextField
     public function getAttributes()
     {
         $attributes = array(
-            'placeholder' => $this->config['defaultparts']['scheme']."://example.com" //example url
+            'placeholder' => $this->config['defaultparts']['scheme'] . "://example.com" //example url
         );
         if ($this->config['html5validation']) {
             $attributes += array(
@@ -133,7 +136,7 @@ class ExternalURLField extends TextField
     {
         $defaults = $this->config['defaultparts'];
         if (!preg_match('#^[a-zA-Z]+://#', $url)) {
-            $url = $defaults['scheme']."://".$url;
+            $url = $defaults['scheme'] . "://" . $url;
         }
         $parts = parse_url($url);
         if (!$parts) {
