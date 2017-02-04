@@ -1,8 +1,12 @@
 <?php
 
-class ExternalURL extends Varchar
-{
+namespace BurnBright\ExternalURLField;
 
+use BurnBright\ExternalURLField\ExternalURLField;
+use SilverStripe\ORM\FieldType\DBVarchar;
+
+class ExternalURL extends DBVarchar
+{
     private static $casting = array(
         "Domain" => "ExternalURL",
         "URL" => "ExternalURL"
@@ -15,14 +19,14 @@ class ExternalURL extends Varchar
     {
         parent::__construct($name, $size, $options);
     }
-    
+
     /**
      * Remove ugly parts of a url to make it nice
      */
     public function Nice()
     {
         if ($this->value && $parts = parse_url($this->URL())) {
-            $remove = array('scheme','user','pass','port','query','fragment');
+            $remove = array('scheme', 'user', 'pass', 'port', 'query', 'fragment');
             foreach ($remove as $part) {
                 unset($parts[$part]);
             }

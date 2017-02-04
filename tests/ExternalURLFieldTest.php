@@ -1,8 +1,13 @@
 <?php
 
+namespace BurnBright\ExternalURLField\Tests;
+
+use BurnBright\ExternalURLField\ExternalURLField;
+use SilverStripe\Dev\SapphireTest;
+use SilverStripe\Forms\RequiredFields;
+
 class ExternalURLFieldTest extends SapphireTest
 {
-
     public function testSetConfig()
     {
         $field = new ExternalURLField("URL", "URL");

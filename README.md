@@ -14,17 +14,20 @@ composer require burnbright/silverstripe-externalurlfield "*@stable"
 
 Makes use of the `http_build_url` function from the [PECL pecl_http library](http://php.net/manual/en/ref.http.php). However the module's composer requirements include a [PHP fallback/shim/polyfill](https://github.com/jakeasmith/http_build_url). The composer replacement does check for the presence of `http_build_url`.
 
+* SilverStripe ^4
+
 ## DataObject / Template Usage
 
 Handled by `ExternalURL` class (Varchar).
 
 ```php
-class MyDataObject extends DataObject {
+use SilverStripe\ORM\DataObject;
 
+class MyDataObject extends DataObject
+{
     private static $db = array(
         'Website' => 'ExternalURL'
     );
-
 }
 ```
 
@@ -55,6 +58,7 @@ The field uses the html5 `type="url"` attribute.
 You can configure various parts of the url to be stripped out, or populated with defaults when missing.
 
 ```php
+use BurnBright\ExternalURLField\ExternalURLField;
 
 //default
 $websitefield = new ExternalURLField('Website');
