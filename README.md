@@ -1,6 +1,6 @@
 # SilverStripe External URL Field
 
-[![Build Status](https://travis-ci.org/burnbright/silverstripe-externalurlfield.svg?branch=master)](https://travis-ci.org/burnbright/silverstripe-externalurlfield) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/?branch=master)
+[![Build Status](https://travis-ci.org/burnbright/silverstripe-externalurlfield.svg?branch=master)](https://travis-ci.org/burnbright/silverstripe-externalurlfield) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/?branch=master)
 
 Provides a `DBField` and `FormField` for handling external URLs.
 

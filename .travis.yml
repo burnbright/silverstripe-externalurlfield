@@ -30,5 +30,6 @@ script:
 after_success:
   - >
     test "$COVERAGE" = "1"
+    && cd externalurlfield
     && wget https://scrutinizer-ci.com/ocular.phar
     && php ocular.phar code-coverage:upload -v --format=php-clover ~/coverage.xml
