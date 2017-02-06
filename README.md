@@ -1,5 +1,7 @@
 # SilverStripe External URL Field
 
+[![Build Status](https://travis-ci.org/burnbright/silverstripe-externalurlfield.svg?branch=master)](https://travis-ci.org/burnbright/silverstripe-externalurlfield) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/?branch=master)
+
 Provides a `DBField` and `FormField` for handling external URLs.
 
 Validate and tidy urls as they are captured from users. Configuration is highly flexible. Makes use of php's `parse_url` and `http_build_url` to do the actual work.
