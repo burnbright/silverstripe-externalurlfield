@@ -27,7 +27,7 @@ class ExternalURL extends Varchar
                 unset($parts[$part]);
             }
 
-            return rtrim(http_build_url($parts), "/");
+            return http_build_url($parts);
         }
     }
 
