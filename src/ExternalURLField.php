@@ -116,13 +116,15 @@ class ExternalURLField extends TextField
     /**
      * Rebuild url on save
      * @param string $url
+     * @param array|DataObject $data {@see Form::loadDataFrom}
+     * @return $this
      */
-    public function setValue($url)
+    public function setValue($url, $data = null)
     {
         if ($url) {
             $url = $this->rebuildURL($url);
         }
-        parent::setValue($url);
+        parent::setValue($url, $data);
     }
 
     /**
