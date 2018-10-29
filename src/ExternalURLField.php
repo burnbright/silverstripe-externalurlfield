@@ -97,9 +97,13 @@ class ExternalURLField extends TextField
      */
     public function getAttributes()
     {
-        $attributes = array(
-            'placeholder' => $this->config['defaultparts']['scheme'] . "://example.com" //example url
-        );
+        $parentAttributes = parent::getAttributes();
+        $attributes = array();
+
+        if (!isset($parentAttributes['placeholder'])) {
+            $attributes['placeholder'] = $this->config['defaultparts']['scheme'] . "://example.com"; //example url
+        }
+
         if ($this->config['html5validation']) {
             $attributes += array(
                 'type' => 'url', //html5 field type
@@ -108,7 +112,7 @@ class ExternalURLField extends TextField
         }
 
         return array_merge(
-            parent::getAttributes(),
+            $parentAttributes,
             $attributes
         );
     }
