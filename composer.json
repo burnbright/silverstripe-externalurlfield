@@ -1,7 +1,7 @@
 {
 	"name": "burnbright/silverstripe-externalurlfield",
 	"description": "Provides SilverStripe with a DBField and FormField for handling external URLs.",
-	"type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
 	"license": "MIT",
 	"keywords": ["silverstripe", "url", "link", "form", "field"],
 	"require": {
