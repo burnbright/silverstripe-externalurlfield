@@ -33,7 +33,10 @@ class ExternalURLField extends TextField
             'fragment' => false
         ),
         'html5validation' => true,
-        'validregex' => '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))(?::\d+)?(?:[^\s]*)?$%iu'
+        'validregex' => '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)'
+            . '?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)'
+            . '(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))'
+            . '(?::\d+)?(?:[^\s]*)?$%iu'
     );
 
     /**
@@ -116,13 +119,15 @@ class ExternalURLField extends TextField
     /**
      * Rebuild url on save
      * @param string $url
+     * @param array|DataObject $data {@see Form::loadDataFrom}
+     * @return $this
      */
-    public function setValue($url)
+    public function setValue($url, $data = null)
     {
         if ($url) {
             $url = $this->rebuildURL($url);
         }
-        parent::setValue($url);
+        parent::setValue($url, $data);
     }
 
     /**
