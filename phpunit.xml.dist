@@ -1,11 +1,8 @@
-<phpunit bootstrap="framework/tests/bootstrap.php" colors="true">
-    <testsuite name="Default">
-        <directory>tests</directory>
-    </testsuite>
+<phpunit bootstrap="vendor/silverstripe/framework/tests/bootstrap.php" colors="true">
 
-    <listeners>
-        <listener class="SilverStripe\Dev\TestListener" />
-    </listeners>
+    <testsuite name="Default">
+        <directory>tests/</directory>
+    </testsuite>
 
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
@@ -15,4 +12,5 @@
             </exclude>
         </whitelist>
     </filter>
+
 </phpunit>
