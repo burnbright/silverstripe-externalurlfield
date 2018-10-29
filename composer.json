@@ -6,6 +6,7 @@
 	"keywords": ["silverstripe", "url", "link", "form", "field"],
 	"require": {
 		"silverstripe/framework": "^4.0@dev",
+        "silverstripe/vendor-plugin": "^1.0",
 		"jakeasmith/http_build_url": "^1"
 	},
 	"authors": [
