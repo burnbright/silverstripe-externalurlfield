@@ -8,9 +8,6 @@
 		"silverstripe/framework": "^4.0@dev",
 		"jakeasmith/http_build_url": "^1"
 	},
-	"extra": {
-		"installer-name": "externalurlfield"
-	},
 	"authors": [
 		{
 			"name": "Jeremy Shipman",
