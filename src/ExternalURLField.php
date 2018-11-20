@@ -117,7 +117,7 @@ class ExternalURLField extends TextField
      * Rebuild url on save
      * @param string $url
      */
-    public function setValue($url)
+    public function setValue($url, $data = NULL)
     {
         if ($url) {
             $url = $this->rebuildURL($url);
