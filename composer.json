@@ -1,5 +1,5 @@
 {
-	"name": "burnbright/silverstripe-externalurlfield",
+	"name": "fromholdio/silverstripe-externalurlfield",
 	"description": "Provides SilverStripe with a DBField and FormField for handling external URLs.",
     "type": "silverstripe-vendormodule",
 	"license": "MIT",
