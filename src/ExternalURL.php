@@ -8,8 +8,8 @@ use SilverStripe\ORM\FieldType\DBVarchar;
 class ExternalURL extends DBVarchar
 {
     private static $casting = array(
-        "Domain" => "ExternalURL",
-        "URL" => "ExternalURL"
+        "Domain" => ExternalURL::class,
+        "URL" => ExternalURL::class,
     );
 
     /**
