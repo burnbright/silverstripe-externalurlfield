@@ -1,0 +1,6 @@
+---
+Name: externalurlfield
+---
+SilverStripe\Core\Injector\Injector:
+  ExternalURL:
+    class: BurnBright\ExternalURLField\ExternalURL
