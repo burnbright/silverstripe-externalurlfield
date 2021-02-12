@@ -50,7 +50,7 @@ class ExternalURL extends DBVarchar
      */
     public function NoWWW()
     {
-        return ltrim($this->value, "www.");
+        return preg_replace('#^www\.(.+\.)#i', '$1', $this->value);
     }
 
     /**
