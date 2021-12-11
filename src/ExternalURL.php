@@ -10,6 +10,7 @@ class ExternalURL extends DBVarchar
     private static $casting = array(
         "Domain" => ExternalURL::class,
         "URL" => ExternalURL::class,
+        "NiceMaxLength" => => ExternalURL::class,
     );
 
     /**
@@ -34,6 +35,21 @@ class ExternalURL extends DBVarchar
             return rtrim(http_build_url($parts), "/");
         }
     }
+    
+    /**
+     * break up url to avoid having urls that are too long ...
+     */
+    public function NiceMaxLength(?int $maxLength = 45, ?string $concatenater = ' ... ') 
+    {
+        $url = $this->Nice();
+        if ( strlen($url) > $maxLength) {
+            $firstBitLength = round($maxLength/3*2);
+            $secondBitLength = round($maxLength/3) * -1;
+            return substr($url, 0, $firstBitLength) . $concatenater . substr($url, $secondBitLength);
+        } else {
+            return $url;
+        }
+    }        
 
     /**
      * Get just the domain of the url.
