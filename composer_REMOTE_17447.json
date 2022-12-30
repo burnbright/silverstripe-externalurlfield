@@ -1,0 +1,30 @@
+{
+	"name": "fromholdio/silverstripe-externalurlfield",
+	"description": "Provides SilverStripe with a DBField and FormField for handling external URLs.",
+    "type": "silverstripe-vendormodule",
+	"license": "MIT",
+	"keywords": ["silverstripe", "url", "link", "form", "field"],
+	"require": {
+		"silverstripe/framework": "^4.0",
+        "silverstripe/vendor-plugin": "^1.0",
+		"jakeasmith/http_build_url": "^1"
+	},
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+	"authors": [
+		{
+			"name": "Jeremy Shipman",
+			"homepage": "https://github.com/jedateach",
+			"role": "Developer"
+		}
+	],
+    "autoload": {
+        "psr-4": {
+            "BurnBright\\ExternalURLField\\": "src/",
+            "BurnBright\\ExternalURLField\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev"
+}

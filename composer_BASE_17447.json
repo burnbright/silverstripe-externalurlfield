@@ -1,0 +1,27 @@
+{
+	"name": "burnbright/silverstripe-externalurlfield",
+	"description": "Provides SilverStripe with a DBField and FormField for handling external URLs.",
+	"type": "silverstripe-module",
+	"license": "MIT",
+	"keywords": ["silverstripe", "url", "link", "form", "field"],
+	"require": {
+		"silverstripe/framework": "^4.0@dev",
+		"jakeasmith/http_build_url": "^1"
+	},
+	"extra": {
+		"installer-name": "externalurlfield"
+	},
+	"authors": [
+		{
+			"name": "Jeremy Shipman",
+			"homepage": "https://github.com/jedateach",
+			"role": "Developer"
+		}
+	],
+    "autoload": {
+        "psr-4": {
+            "BurnBright\\ExternalURLField\\": "src/",
+            "BurnBright\\ExternalURLField\\Tests\\": "tests/"
+        }
+    }
+}

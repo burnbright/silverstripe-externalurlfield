@@ -1,0 +1,67 @@
+{
+<<<<<<< HEAD
+    "name": "burnbright/silverstripe-externalurlfield",
+    "description": "Provides SilverStripe with a DBField and FormField for handling external URLs.",
+    "type": "silverstripe-vendormodule",
+    "license": "MIT",
+    "keywords": [
+        "silverstripe",
+        "url",
+        "link",
+        "form",
+        "field"
+    ],
+    "require": {
+        "silverstripe/framework": "^4.0",
+        "silverstripe/vendor-plugin": "^1.0",
+        "jakeasmith/http_build_url": "^1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "extra": {
+        "installer-name": "externalurlfield"
+    },
+    "authors": [
+        {
+            "name": "Jeremy Shipman",
+            "homepage": "https://github.com/jedateach",
+            "role": "Developer"
+        }
+    ],
+=======
+	"name": "fromholdio/silverstripe-externalurlfield",
+	"description": "Provides SilverStripe with a DBField and FormField for handling external URLs.",
+    "type": "silverstripe-vendormodule",
+	"license": "MIT",
+	"keywords": ["silverstripe", "url", "link", "form", "field"],
+	"require": {
+		"silverstripe/framework": "^4.0",
+        "silverstripe/vendor-plugin": "^1.0",
+		"jakeasmith/http_build_url": "^1"
+	},
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+	"authors": [
+		{
+			"name": "Jeremy Shipman",
+			"homepage": "https://github.com/jedateach",
+			"role": "Developer"
+		}
+	],
+>>>>>>> 856973728b8bff38d671e4f756eb539aa582c216
+    "autoload": {
+        "psr-4": {
+            "BurnBright\\ExternalURLField\\": "src/",
+            "BurnBright\\ExternalURLField\\Tests\\": "tests/"
+        }
+    },
+<<<<<<< HEAD
+    "minimum-stability": "dev",
+    "prefer-stable": true
+=======
+    "minimum-stability": "dev"
+>>>>>>> 856973728b8bff38d671e4f756eb539aa582c216
+}
