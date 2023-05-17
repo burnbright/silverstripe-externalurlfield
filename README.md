@@ -1,6 +1,6 @@
 # SilverStripe External URL Field
 
-[![Build Status](https://travis-ci.org/burnbright/silverstripe-externalurlfield.svg?branch=master)](https://travis-ci.org/burnbright/silverstripe-externalurlfield) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/burnbright/silverstripe-externalurlfield/?branch=master)
+[![CI](https://github.com/burnbright/silverstripe-externalurlfield/actions/workflows/ci.yml/badge.svg)](https://github.com/burnbright/silverstripe-externalurlfield/actions/workflows/ci.yml)
 
 Provides a `DBField` and `FormField` for handling external URLs.
 
@@ -16,7 +16,7 @@ composer require burnbright/silverstripe-externalurlfield "*@stable"
 
 Makes use of the `http_build_url` function from the [PECL pecl_http library](http://php.net/manual/en/ref.http.php). However the module's composer requirements include a [PHP fallback/shim/polyfill](https://github.com/jakeasmith/http_build_url). The composer replacement does check for the presence of `http_build_url`.
 
-* SilverStripe ^4
+* SilverStripe ^5
 
 ## DataObject / Template Usage
 

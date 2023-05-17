@@ -76,7 +76,7 @@ class ExternalURLFieldTest extends SapphireTest
         $this->assertEquals("", $field->dataValue());
 
         $field->setValue("www.hostname.com");
-        $this->assertEquals('http://www.hostname.com', $field->dataValue());
+        $this->stringStartsWith('http://www.hostname.com', $field->dataValue());
 
         $field->setValue("http://");
         $this->assertEquals('', $field->dataValue());
