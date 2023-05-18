@@ -33,7 +33,10 @@ class ExternalURLField extends TextField
             'fragment' => false
         ),
         'html5validation' => true,
-        'validregex' => '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))(?::\d+)?(?:[^\s]*)?$%iu'
+        'validregex' => '%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)'
+            . '?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)'
+            . '(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))'
+            . '(?::\d+)?(?:[^\s]*)?$%iu'
     );
 
     /**
@@ -123,7 +126,7 @@ class ExternalURLField extends TextField
      * @param array|DataObject $data {@see Form::loadDataFrom}
      * @return $this
      */
-    public function setValue($url, $data = NULL)
+    public function setValue($url, $data = null)
     {
         if ($url) {
             $url = $this->rebuildURL($url);
@@ -161,7 +164,7 @@ class ExternalURLField extends TextField
             }
         }
 
-        return rtrim(http_build_url($defaults, $parts), "/");
+        return http_build_url($defaults, $parts);
     }
 
     /**

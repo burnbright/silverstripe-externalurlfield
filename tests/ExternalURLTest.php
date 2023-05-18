@@ -33,6 +33,28 @@ class ExternalURLTest extends SapphireTest
         $this->assertEquals("www.hostname.com", $f->Domain());
     }
 
+    public function testNoWWW()
+    {
+        $f = new ExternalURL("MyField");
+        $f->setValue("http://username:password@www.hostname.com:81/path?arg=value#anchor");
+        $this->assertEquals("http://username:password@hostname.com:81/path?arg=value#anchor", $f->NoWWW());
+        $f->setValue("http://www.wwwhostname.com:81/path?arg=value#anchor");
+        $this->assertEquals("http://wwwhostname.com:81/path?arg=value#anchor", $f->NoWWW());
+    }
+
+    public function testLeaveURLAsIs()
+    {
+        $f = new ExternalURL("MyField");
+        $f->setValue("http://username:password@www.hostname.com:81/path?arg=value#anchor");
+        $this->assertEquals("http://username:password@www.hostname.com:81/path?arg=value#anchor", $f->URL());
+        $f->setValue("https://www.hostname.com/test/path/");
+        $this->assertEquals("https://www.hostname.com/test/path/", $f->URL());
+        $f->setValue("https://www.hostname.com/test/path");
+        $this->assertEquals("https://www.hostname.com/test/path", $f->URL());
+        $f->setValue("https://www.hostname.com/test/path/?arg=value");
+        $this->assertEquals("https://www.hostname.com/test/path/?arg=value", $f->URL());
+    }
+
     public function testScaffolding()
     {
         $f = new ExternalURL("MyField");

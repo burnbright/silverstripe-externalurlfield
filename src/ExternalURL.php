@@ -31,7 +31,7 @@ class ExternalURL extends DBVarchar
                 unset($parts[$part]);
             }
 
-            return rtrim(http_build_url($parts), "/");
+            return http_build_url($parts);
         }
     }
 
@@ -50,7 +50,12 @@ class ExternalURL extends DBVarchar
      */
     public function NoWWW()
     {
-        return ltrim($this->value, "www.");
+        if ($this->value && $parts = parse_url($this->URL())) {
+            if (isset($parts['host'])) {
+                $parts['host'] = preg_replace('#^www\.(.+\.)#i', '$1', $parts['host']);
+            }
+            return http_build_url($parts);
+        }
     }
 
     /**
